@@ -347,15 +347,18 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 # powerlevel9k配置
+source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 # 双行提示
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-# 去掉用户名和主机名提示
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 # 修改提示符样式
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="$ "
-# 禁用右提示符
-POWERLEVEL9K_DISABLE_RPROMPT=true
+# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="$ "
+# 左边
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS的默认值为(context dir vcs)，去掉用户名和主机名的context 
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+# 右边
+# TIME
+POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %d/%m/%y}"
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time dir_writable ip ram load background_jobs)
 
