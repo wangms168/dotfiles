@@ -71,10 +71,10 @@ COMPLETION_WAITING_DOTS="true"
 # -------------------------------------------------------------------------------------------------------------------------------
 # Enabling Plugins 启用插件。调用随oh-my-zsh默认安装的包(in ~/.oh-my-zsh/plugins/*)及自己手工下载的包(in ~/.oh-my-zsh/custom/plugins/*)
 plugins=(
-    git
-    extract        # x filename 即可，不用再记忆各类参数
-    history
-    autojump       # 这个插件需用pacman安装，她会记录进入过的文件夹，下次再进入只要输入很少的内容即可
+    git            # git别名
+    z              #同autojump插件，她会记录进入过的文件夹，下次再进入只要输入很少的内容即可
+    extract        #解压插件，x filename 即可，不用再记忆各类参数
+    history-substring-search   # 默认上下方向键选择
     catimg         # catimg filename
     encode64       # encode64 string
     urltools       # 编码 urlencode http://wdxtub.com;解码 urldecode http%3A%2F%2Fwdxtub.com
@@ -89,26 +89,58 @@ source ~/.zplug/init.zsh
 
 # oh-my-zsh
 # zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
-
-# Load theme
-# zplug "mafredri/zsh-async", from:github, use:async.zsh
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
-
-zplug "plugins/z",                 from:oh-my-zsh
-zplug "zsh-users/zsh-completions"
+# zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-history-substring-search", defer:3
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+# zplug check returns true if all packages are installed
+# Therefore, when it returns false, run zplug install
+if ! zplug check; then
+    zplug install
+fi
+
+if zplug check "zsh-users/zsh-syntax-highlighting"; then
+    typeset -gA ZSH_HIGHLIGHT_STYLES ZSH_HIGHLIGHT_PATTERNS
+
+    ZSH_HIGHLIGHT_STYLES[default]='none'
+    ZSH_HIGHLIGHT_STYLES[cursor]='fg=yellow'
+    ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
+    ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=yellow'
+    ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan'
+    ZSH_HIGHLIGHT_STYLES[builtin]='fg=cyan'
+    ZSH_HIGHLIGHT_STYLES[function]='fg=cyan'
+    ZSH_HIGHLIGHT_STYLES[command]='fg=cyan'
+    ZSH_HIGHLIGHT_STYLES[precommand]='fg=green'
+    ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=yellow'
+    ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=green'
+    ZSH_HIGHLIGHT_STYLES[path]='fg=white,underline'
+    ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=grey,underline'
+    ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=white'
+    ZSH_HIGHLIGHT_STYLES[path_approx]='fg=white'
+    ZSH_HIGHLIGHT_STYLES[globbing]='none'
+    ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=green'
+    ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=blue'
+    ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=blue'
+    ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='none'
+    ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=magenta'
+    ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=magenta'
+    ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=cyan'
+    ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=cyan'
+    ZSH_HIGHLIGHT_STYLES[redirection]='fg=magenta'
+    ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=cyan,bold'
+    ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=green,bold'
+    ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=magenta,bold'
+    ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=yellow,bold'
+    ZSH_HIGHLIGHT_STYLES[assign]='none'
+
+    ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
+
+    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor line)
 fi
 
 # powerlevel9k配置
+# https://raw.githubusercontent.com/tonylambiris/dotfiles/devel/dot.zshrc
 if zplug check "bhilburn/powerlevel9k"; then
     #DEFAULT_USER=$USER
 
@@ -279,11 +311,12 @@ if zplug check "bhilburn/powerlevel9k"; then
     #P9K_SHOW_CHANGESET=true
 fi
 
-# Then, source plugins and add commands to $PATH
-zplug load --verbose
+# source plugins and add commands to the PATH
+zplug load
 ################################################################
 # zplug end
 ################################################################
+
 
 # Initialize command prompt
 export PS1="%n@%m:%~%# "
@@ -307,91 +340,9 @@ if [[ -o login ]]; then
 	[ -f "$HOME/.local/etc/login.zsh" ] && source "$HOME/.local/etc/login.zsh"
 fi
 
-################################################################
-# syntax
-################################################################
-# syntax color definition
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-
-typeset -A ZSH_HIGHLIGHT_STYLES
-
-# ZSH_HIGHLIGHT_STYLES[command]=fg=white,bold
-# ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
-
-ZSH_HIGHLIGHT_STYLES[default]=none
-ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=009
-ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=009,standout
-ZSH_HIGHLIGHT_STYLES[alias]=fg=cyan,bold
-ZSH_HIGHLIGHT_STYLES[builtin]=fg=cyan,bold
-ZSH_HIGHLIGHT_STYLES[function]=fg=cyan,bold
-ZSH_HIGHLIGHT_STYLES[command]=fg=white,bold
-ZSH_HIGHLIGHT_STYLES[precommand]=fg=white,underline
-ZSH_HIGHLIGHT_STYLES[commandseparator]=none
-ZSH_HIGHLIGHT_STYLES[hashed-command]=fg=009
-ZSH_HIGHLIGHT_STYLES[path]=fg=214,underline
-ZSH_HIGHLIGHT_STYLES[globbing]=fg=063
-ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=white,underline
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=none
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=none
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=063
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=063
-ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=009
-ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=009
-ZSH_HIGHLIGHT_STYLES[assign]=none
-
 # load local config
 [ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh" 
 [ -f "$HOME/.local/etc/local.zsh" ] && source "$HOME/.local/etc/local.zsh"
-
-################################################################
-# Set ZSH options
-################################################################
-# options
-unsetopt correct_all
-#== History ================
-setopt BANG_HIST                 # Treat the '!' character specially during expansion.
-setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY             # Share history between all sessions.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
-setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
-setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
-setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
-setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
-setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
-#HISTFILE=$HOME/zsh_history           # history file location
-HISTSIZE=1000000                 # number of history lines kept internally
-SAVEHIST=1000000                 # max number of history lines saved
-
-################################################################
-# Functions
-################################################################
-# source function.sh if it exists
-[ -f "$HOME/.local/etc/function.sh" ] && . "$HOME/.local/etc/function.sh"
-
-# ignore complition
-zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
-zstyle ':completion:*:*sh:*:' tag-order files
-
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 ################################################################
 # Aliases
@@ -467,4 +418,16 @@ source $ZSH/oh-my-zsh.sh
 
 # colorls 
 source $(dirname $(gem which colorls))/tab_complete.sh
+alias cla="colorls -A"
+alias cld="colorls -d"
+alias clf="colorls -f"
+alias clh="colorls -h"
+alias cll="colorls -l"
+alias clr="colorls -r"
+alias clt="colorls --tree"
+alias clgs="colorls --gs"
+alias clsd="colorls -lA --sd"
+alias clsf="colorls -lA --sf"
+
+
 
