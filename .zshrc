@@ -2,6 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+export ZSH_DISABLE_COMPFIX=true
 export ZSH="/home/wangms/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -40,7 +41,6 @@ export ZSH="/home/wangms/.oh-my-zsh"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion. # 按tab键补全命令的时候,如果没什么可补全的就会出现三个红点,更人性化显示，这里我们启用
-COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -265,10 +265,10 @@ zplug load
 
 
 # Initialize command prompt
-export PS1="%n@%m:%~%# "
+# export PS1="%n@%m:%~%# "
 
 # Enable 256 color to make auto-suggestions look nice
-export TERM="xterm-256color"
+[[ $TMUX = "" ]] && export TERM="xterm-256color"
 
 # Load local bash/zsh compatible settings
 _INIT_SH_NOFUN=1
@@ -330,7 +330,6 @@ alias -s bz2='tar -xjvf'
 # prompt fade magenta
 
 # -------------------------------------------------------------------------------------------------------------------------------
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
