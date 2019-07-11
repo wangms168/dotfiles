@@ -13,7 +13,7 @@
 
 ## Make the 'nextword' function (Ctrl+Right) stop at word ends
 ## instead of at beginnings.
-set afterends
+#set afterends
 
 ## When soft line wrapping is enabled, make it wrap lines at blanks
 ## (tabs and spaces) instead of always at the edge of the screen.
@@ -86,7 +86,7 @@ set mouse
 
 ## Switch on multiple file buffers (inserting a file will put it into
 ## a separate buffer).
-# set multibuffer
+set multibuffer
 
 ## Don't convert files from DOS/Mac format.
 # set noconvert
@@ -290,7 +290,6 @@ unbind ^V all
 unbind ^Y all
 bind M-X flipnewbuffer all
 bind ^X cut all
-#unbind ^C all
 #bind ^C copy all
 bind ^V paste all
 bind ^P curpos main
