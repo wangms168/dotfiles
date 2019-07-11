@@ -72,6 +72,7 @@ export ZSH="/home/wangms/.oh-my-zsh"
 # Enabling Plugins 启用插件。调用随oh-my-zsh默认安装的包(in ~/.oh-my-zsh/plugins/*)及自己手工下载的包(in ~/.oh-my-zsh/custom/plugins/*)
 plugins=(
     git            # git别名
+    autojump
     z              #同autojump插件，她会记录进入过的文件夹，下次再进入只要输入很少的内容即可
     extract        #解压插件，x filename 即可，不用再记忆各类参数
     history-substring-search   # 默认上下方向键选择
