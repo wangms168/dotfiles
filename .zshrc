@@ -71,7 +71,7 @@ export ZSH="/home/wangms/.oh-my-zsh"
 # -------------------------------------------------------------------------------------------------------------------------------
 # Enabling Plugins 启用插件。调用随oh-my-zsh默认安装的包(in ~/.oh-my-zsh/plugins/*)及自己手工下载的包(in ~/.oh-my-zsh/custom/plugins/*)
 plugins=(
-    git            # git别名
+   # git            # git别名
     autojump
     z              #同autojump插件，她会记录进入过的文件夹，下次再进入只要输入很少的内容即可
     extract        #解压插件，x filename 即可，不用再记忆各类参数
@@ -294,18 +294,10 @@ fi
 ################################################################
 # Aliases
 ################################################################
-# 用 GUI 文件管理器或编辑器打开指定的的文件或目录
-# xdg-open fileOrDir
-alias opzshrc="xdg-open ~/.zshrc" 
-alias ohmyzsh="xdg-open ~/.oh-my-zsh/"
-
-alias zshrc="emacs ~/.zshrc &"
-alias ff="firefox &"
-
+alias zshrc="vim ~/dotfiles/.zshrc"
 # https://wdxtub.com/2016/02/18/oh-my-zsh/
 alias cls='clear'
-alias ll='ls -l'
-alias la='ls -a'
+alias l.='ls -d .* --color=auto'
 alias grep="grep --color=auto"
 alias -s html='vim'        # 在命令行直接输入后缀为 html 的文件名，会在 Vim 中打开
 alias -s rb='vim'          # 在命令行直接输入 ruby 文件，会在 Vim 中打开
