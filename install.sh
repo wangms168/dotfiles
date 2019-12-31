@@ -35,6 +35,8 @@ function create_symlink_if_possible() {
 function dotdir() {
     cd `dirname "${BASH_SOURCE[0]}"` && echo "`pwd`/$1"
 }
+# ${BASH_SOURCE[0]} = ./install.sh
+# `dirname "${BASH_SOURCE[0]}"` = .
 
 function dotfiles() {
     find `dotdir` -maxdepth 1 -name '.*' -not -name '.git' -printf '%f\n'

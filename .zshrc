@@ -1,5 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export TERM="xterm-256color"
+# export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
 
 # Path to your oh-my-zsh installation.
 export ZSH_DISABLE_COMPFIX=true
@@ -71,7 +73,7 @@ export ZSH="/home/wangms/.oh-my-zsh"
 # -------------------------------------------------------------------------------------------------------------------------------
 # Enabling Plugins 启用插件。调用随oh-my-zsh默认安装的包(in ~/.oh-my-zsh/plugins/*)及自己手工下载的包(in ~/.oh-my-zsh/custom/plugins/*)
 plugins=(
-   # git            # git别名
+    # git            # git别名
     autojump
     z              #同autojump插件，她会记录进入过的文件夹，下次再进入只要输入很少的内容即可
     extract        #解压插件，x filename 即可，不用再记忆各类参数
@@ -144,18 +146,18 @@ fi
 # https://raw.githubusercontent.com/tonylambiris/dotfiles/devel/dot.zshrc
 if zplug check "bhilburn/powerlevel9k"; then
     # Easily switch primary foreground/background colors
-#    DEFAULT_FOREGROUND=038 DEFAULT_BACKGROUND=024 PROMPT_COLOR=038
-#    DEFAULT_FOREGROUND=006 DEFAULT_BACKGROUND=235 PROMPT_COLOR=173
-#    DEFAULT_FOREGROUND=198 DEFAULT_BACKGROUND=090 PROMPT_COLOR=173
-#    DEFAULT_FOREGROUND=235 DEFAULT_BACKGROUND=159 PROMPT_COLOR=173
-#    DEFAULT_FOREGROUND=123 DEFAULT_BACKGROUND=059 PROMPT_COLOR=183
-#    DEFAULT_FOREGROUND=159 DEFAULT_BACKGROUND=238 PROMPT_COLOR=173
-#    DEFAULT_FOREGROUND=159
+    #    DEFAULT_FOREGROUND=038 DEFAULT_BACKGROUND=024 PROMPT_COLOR=038
+    #    DEFAULT_FOREGROUND=006 DEFAULT_BACKGROUND=235 PROMPT_COLOR=173
+    #    DEFAULT_FOREGROUND=198 DEFAULT_BACKGROUND=090 PROMPT_COLOR=173
+    #    DEFAULT_FOREGROUND=235 DEFAULT_BACKGROUND=159 PROMPT_COLOR=173
+    #    DEFAULT_FOREGROUND=123 DEFAULT_BACKGROUND=059 PROMPT_COLOR=183
+    #    DEFAULT_FOREGROUND=159 DEFAULT_BACKGROUND=238 PROMPT_COLOR=173
+    #    DEFAULT_FOREGROUND=159
     DEFAULT_BACKGROUND=239
     PROMPT_COLOR=172
     DEFAULT_COLOR="clear"
 
-    P9K_MODE="nerdfont-complete"
+    P9K_MODE="nerdfont-complete"    # pacman -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
     P9K_STATUS_VERBOSE=false
     P9K_DIR_SHORTEN_LENGTH=1
 
@@ -168,7 +170,7 @@ if zplug check "bhilburn/powerlevel9k"; then
     P9K_RIGHT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
     P9K_LEFT_SEGMENT_SEPARATOR_ICON='▓▒░'
     P9K_RIGHT_SEGMENT_SEPARATOR_ICON='░▒▓'
- 
+
     P9K_PROMPT_ON_NEWLINE=true
     P9K_RPROMPT_ON_NEWLINE=false
 
@@ -288,15 +290,24 @@ if [[ -o login ]]; then
 fi
 
 # load local config
-[ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh" 
+[ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh"
 [ -f "$HOME/.local/etc/local.zsh" ] && source "$HOME/.local/etc/local.zsh"
+
+
+# Base16 Shell
+# BASE16_SHELL="$HOME/.config/base16-shell/"
+# [ -n "$PS1" ] && \
+#     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+#         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 ################################################################
 # Aliases
 ################################################################
 alias zshrc="vim ~/dotfiles/.zshrc"
 # https://wdxtub.com/2016/02/18/oh-my-zsh/
-alias cls='clear'
+alias lsi='/opt/coreutils/bin/ls'
+# export PATH=$PATH:/opt/coreutils/bin
+alias cle='clear'
 alias l.='ls -d .* --color=auto'
 alias grep="grep --color=auto"
 alias -s html='vim'        # 在命令行直接输入后缀为 html 的文件名，会在 Vim 中打开
@@ -354,7 +365,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# colorls 
+# colorls
 source $(dirname $(gem which colorls))/tab_complete.sh
 alias cla="colorls -A"
 alias cld="colorls -d"
@@ -366,6 +377,3 @@ alias clt="colorls --tree"
 alias clgs="colorls --gs"
 alias clsd="colorls -A --sd"
 alias clsf="colorls -A --sf"
-
-
-
