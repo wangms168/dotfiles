@@ -40,6 +40,7 @@ function dotdir() {
 
 function dotfiles() {
     find `dotdir` -maxdepth 1 -name '.*' -not -name '.git' -printf '%f\n'
+    # -printf '%f\n' 是将前面在当前目录find到的文件（含路径和文件名）只截止后面的文件名，并一个一个地转行。
 }
 
 function warn() {
