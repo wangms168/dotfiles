@@ -22,15 +22,23 @@ number=0
 while [ $number -lt 16 ]
 do
     ARRAY=`echo $ARRAY ; egrep "URxvt.color$number[\: ]|\*color$number[\: ]" $XRESFILE | egrep -v "^\!"| awk '{print $NF}'`
+    # ARRAY=`echo $ARRAY ; echo B` 相当于x =+ x 自加
+    # -awk'{print $ NF}'表示打印空格分隔文件中的最后一个字段。
     number=$(($number+1))
+    # echo $ARRAY
 done
 
 PALETTEVALUE=`echo $ARRAY | sed 's/\ /\;/g'`
-X_BACKGROUNDVALUE=`grep background $XRESFILE | awk '{print $NF}'`
-X_FOREGROUNDVALUE=`grep foreground $XRESFILE | awk '{print $NF}'`
+# 将空格替换为;冒号.
+# echo $PALETTEVALUE
 
+# X_BACKGROUNDVALUE=`grep background $XRESFILE | awk '{print $NF}'`
+X_BACKGROUNDVALUE=`grep background $XRESFILE  | egrep -v "^\!" | awk '{print $NF}'`
+# X_FOREGROUNDVALUE=`grep foreground $XRESFILE | awk '{print $NF}'`
+X_FOREGROUNDVALUE=`grep foreground $XRESFILE  | egrep -v "^\!" | awk '{print $NF}'`
 
 BACKGROUNDVALUE_PART1=${X_BACKGROUNDVALUE:1:2}
+# ${X_BACKGROUNDVALUE:1:2}从第1个字符开始截取2个字符.
 BACKGROUNDVALUE_PART2=${X_BACKGROUNDVALUE:3:2}
 BACKGROUNDVALUE_PART3=${X_BACKGROUNDVALUE:5:2}
 BACKGROUNDVALUE="#$BACKGROUNDVALUE_PART1$BACKGROUNDVALUE_PART2$BACKGROUNDVALUE_PART3"
@@ -42,6 +50,7 @@ FOREGROUNDVALUE="#$FOREGROUNDVALUE_PART1$FOREGROUNDVALUE_PART2$FOREGROUNDVALUE_P
 
 
 THEMENAME=`basename $1 | awk -F "\." '{print $1}' 2>/dev/null`
+# '{print $1}'中的$1代表前面管道的输出.
 
 CONTENTS=`
 echo "[Scheme]"
@@ -50,6 +59,17 @@ echo "ColorPalette=$PALETTEVALUE"
 echo "ColorForeground=$FOREGROUNDVALUE"
 echo "ColorCursor=$FOREGROUNDVALUE"
 echo "ColorBackground=$BACKGROUNDVALUE"`
+
+:<<EOF
+CONTENTS="
+[Scheme]
+Name=${THEMENAME}
+ColorPalette=$PALETTEVALUE
+ColorForeground=$FOREGROUNDVALUE
+ColorCursor=$FOREGROUNDVALUE
+ColorBackground=$BACKGROUNDVALUE"
+echo ${CONTENTS}
+EOF
 
 echo "Writing ${THEMENAME}.theme file..."
 echo "${CONTENTS}" > "${THEMENAME}".theme

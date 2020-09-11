@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
 export TERM="xterm-256color"
 # export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
 
