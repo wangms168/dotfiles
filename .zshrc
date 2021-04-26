@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
 export TERM="xterm-256color"
 # export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
 
@@ -13,7 +12,7 @@ export ZSH="/home/wangms/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-# ZSH_THEME="fino"
+ZSH_THEME="fino"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -93,7 +92,12 @@ source ~/.zplug/init.zsh
 
 # oh-my-zsh
 # zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
+
+P9K="ok"
+if [ ! -n "$P9K" ]; then
+    zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
+fi
+
 # zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -102,6 +106,126 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 # Therefore, when it returns false, run zplug install
 if ! zplug check; then
     zplug install
+fi
+
+if [ ! -n "$P9K" ]; then
+    # powerlevel9k配置
+    # https://raw.githubusercontent.com/tonylambiris/dotfiles/devel/dot.zshrc
+    if zplug check "bhilburn/powerlevel9k"; then
+        # Easily switch primary foreground/background colors
+        #    DEFAULT_FOREGROUND=038 DEFAULT_BACKGROUND=024 PROMPT_COLOR=038
+        #    DEFAULT_FOREGROUND=006 DEFAULT_BACKGROUND=235 PROMPT_COLOR=173
+        #    DEFAULT_FOREGROUND=198 DEFAULT_BACKGROUND=090 PROMPT_COLOR=173
+        #    DEFAULT_FOREGROUND=235 DEFAULT_BACKGROUND=159 PROMPT_COLOR=173
+        #    DEFAULT_FOREGROUND=123 DEFAULT_BACKGROUND=059 PROMPT_COLOR=183
+        #    DEFAULT_FOREGROUND=159 DEFAULT_BACKGROUND=238 PROMPT_COLOR=173
+        #    DEFAULT_FOREGROUND=159
+        DEFAULT_BACKGROUND=239
+        PROMPT_COLOR=172
+        DEFAULT_COLOR="clear"
+    
+        P9K_MODE="nerdfont-complete"    # pacman -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
+        P9K_STATUS_VERBOSE=false
+        P9K_DIR_SHORTEN_LENGTH=1
+    
+        P9K_DIR_OMIT_FIRST_CHARACTER=false
+    
+        P9K_CONTEXT_ALWAYS_SHOW=true
+        P9K_CONTEXT_ALWAYS_SHOW_USER=false
+    
+        P9K_LEFT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
+        P9K_RIGHT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
+        P9K_LEFT_SEGMENT_SEPARATOR_ICON='▓▒░'
+        P9K_RIGHT_SEGMENT_SEPARATOR_ICON='░▒▓'
+    
+        P9K_PROMPT_ON_NEWLINE=true
+        P9K_RPROMPT_ON_NEWLINE=false
+    
+        P9K_STATUS_VERBOSE=true
+        P9K_STATUS_CROSS=true
+        P9K_PROMPT_ADD_NEWLINE=true
+    
+        P9K_MULTILINE_FIRST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}%f"
+        P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}➜ %f"
+    
+        P9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs)
+        P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time)
+    
+        P9K_VCS_GIT_GITHUB_ICON=""
+        P9K_VCS_GIT_BITBUCKET_ICON=""
+        P9K_VCS_GIT_GITLAB_ICON=""
+        P9K_VCS_GIT_ICON=""
+    
+        P9K_VCS_CLEAN_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_VCS_CLEAN_FOREGROUND="010"
+    
+        P9K_VCS_MODIFIED_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_VCS_MODIFIED_FOREGROUND="011"
+    
+        P9K_VCS_UNTRACKED_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_VCS_UNTRACKED_FOREGROUND="011"
+    
+        P9K_DIR_HOME_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_DIR_HOME_FOREGROUND="158"
+        P9K_DIR_HOME_SUBFOLDER_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_DIR_HOME_SUBFOLDER_FOREGROUND="158"
+        P9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_DIR_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_DIR_DEFAULT_FOREGROUND="158"
+        P9K_DIR_ETC_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_DIR_ETC_FOREGROUND="158"
+        P9K_DIR_NOT_WRITABLE_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_DIR_NOT_WRITABLE_FOREGROUND="158"
+    
+        P9K_ROOT_INDICATOR_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_ROOT_INDICATOR_FOREGROUND="red"
+    
+        P9K_STATUS_OK_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_STATUS_OK_FOREGROUND="green"
+        P9K_STATUS_ERROR_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_STATUS_ERROR_FOREGROUND="red"
+    
+        P9K_TIME_ICON="\uF017" # 
+        P9K_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_TIME_FOREGROUND="183"
+    
+        P9K_COMMAND_EXECUTION_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
+        P9K_COMMAND_EXECUTION_TIME_PRECISION=1
+    
+        P9K_BACKGROUND_JOBS_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_BACKGROUND_JOBS_FOREGROUND="123"
+    
+        P9K_USER_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_USER_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_USER_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_USER_DEFAULT_ICON="\uF415" # 
+        P9K_USER_ROOT_ICON=$'\uFF03' # ＃
+    
+        P9K_CONTEXT_TEMPLATE="\uF109 %m"
+        P9K_CONTEXT_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_CONTEXT_DEFAULT_FOREGROUND="123"
+        P9K_CONTEXT_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_CONTEXT_SUDO_FOREGROUND="123"
+        P9K_CONTEXT_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_CONTEXT_REMOTE_FOREGROUND="123"
+        P9K_CONTEXT_REMOTE_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_CONTEXT_REMOTE_SUDO_FOREGROUND="123"
+        P9K_CONTEXT_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_CONTEXT_ROOT_FOREGROUND="123"
+    
+        P9K_HOST_LOCAL_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_HOST_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_HOST_LOCAL_ICON="\uF109 " # 
+        P9K_HOST_REMOTE_ICON="\uF489 "  # 
+    
+        P9K_SSH_ICON="\uF489 "  # 
+        P9K_SSH_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_SSH_FOREGROUND="212"
+    
+        P9K_OS_ICON_BACKGROUND="$DEFAULT_BACKGROUND"
+        P9K_OS_ICON_FOREGROUND="212"
+    fi
 fi
 
 if zplug check "zsh-users/zsh-syntax-highlighting"; then
@@ -143,133 +267,27 @@ if zplug check "zsh-users/zsh-syntax-highlighting"; then
     ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor line)
 fi
 
-# powerlevel9k配置
-# https://raw.githubusercontent.com/tonylambiris/dotfiles/devel/dot.zshrc
-if zplug check "bhilburn/powerlevel9k"; then
-    # Easily switch primary foreground/background colors
-    #    DEFAULT_FOREGROUND=038 DEFAULT_BACKGROUND=024 PROMPT_COLOR=038
-    #    DEFAULT_FOREGROUND=006 DEFAULT_BACKGROUND=235 PROMPT_COLOR=173
-    #    DEFAULT_FOREGROUND=198 DEFAULT_BACKGROUND=090 PROMPT_COLOR=173
-    #    DEFAULT_FOREGROUND=235 DEFAULT_BACKGROUND=159 PROMPT_COLOR=173
-    #    DEFAULT_FOREGROUND=123 DEFAULT_BACKGROUND=059 PROMPT_COLOR=183
-    #    DEFAULT_FOREGROUND=159 DEFAULT_BACKGROUND=238 PROMPT_COLOR=173
-    #    DEFAULT_FOREGROUND=159
-    DEFAULT_BACKGROUND=239
-    PROMPT_COLOR=172
-    DEFAULT_COLOR="clear"
-
-    P9K_MODE="nerdfont-complete"    # pacman -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
-    P9K_STATUS_VERBOSE=false
-    P9K_DIR_SHORTEN_LENGTH=1
-
-    P9K_DIR_OMIT_FIRST_CHARACTER=false
-
-    P9K_CONTEXT_ALWAYS_SHOW=true
-    P9K_CONTEXT_ALWAYS_SHOW_USER=false
-
-    P9K_LEFT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
-    P9K_RIGHT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
-    P9K_LEFT_SEGMENT_SEPARATOR_ICON='▓▒░'
-    P9K_RIGHT_SEGMENT_SEPARATOR_ICON='░▒▓'
-
-    P9K_PROMPT_ON_NEWLINE=true
-    P9K_RPROMPT_ON_NEWLINE=false
-
-    P9K_STATUS_VERBOSE=true
-    P9K_STATUS_CROSS=true
-    P9K_PROMPT_ADD_NEWLINE=true
-
-    P9K_MULTILINE_FIRST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}%f"
-    P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}➜ %f"
-
-    P9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs)
-    P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time)
-
-    P9K_VCS_GIT_GITHUB_ICON=""
-    P9K_VCS_GIT_BITBUCKET_ICON=""
-    P9K_VCS_GIT_GITLAB_ICON=""
-    P9K_VCS_GIT_ICON=""
-
-    P9K_VCS_CLEAN_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_VCS_CLEAN_FOREGROUND="010"
-
-    P9K_VCS_MODIFIED_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_VCS_MODIFIED_FOREGROUND="011"
-
-    P9K_VCS_UNTRACKED_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_VCS_UNTRACKED_FOREGROUND="011"
-
-    P9K_DIR_HOME_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_HOME_FOREGROUND="158"
-    P9K_DIR_HOME_SUBFOLDER_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_HOME_SUBFOLDER_FOREGROUND="158"
-    P9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_DEFAULT_FOREGROUND="158"
-    P9K_DIR_ETC_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_ETC_FOREGROUND="158"
-    P9K_DIR_NOT_WRITABLE_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_NOT_WRITABLE_FOREGROUND="158"
-
-    P9K_ROOT_INDICATOR_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_ROOT_INDICATOR_FOREGROUND="red"
-
-    P9K_STATUS_OK_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_STATUS_OK_FOREGROUND="green"
-    P9K_STATUS_ERROR_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_STATUS_ERROR_FOREGROUND="red"
-
-    P9K_TIME_ICON="\uF017" # 
-    P9K_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_TIME_FOREGROUND="183"
-
-    P9K_COMMAND_EXECUTION_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
-    P9K_COMMAND_EXECUTION_TIME_PRECISION=1
-
-    P9K_BACKGROUND_JOBS_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_BACKGROUND_JOBS_FOREGROUND="123"
-
-    P9K_USER_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_USER_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_USER_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_USER_DEFAULT_ICON="\uF415" # 
-    P9K_USER_ROOT_ICON=$'\uFF03' # ＃
-
-    P9K_CONTEXT_TEMPLATE="\uF109 %m"
-    P9K_CONTEXT_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_CONTEXT_DEFAULT_FOREGROUND="123"
-    P9K_CONTEXT_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_CONTEXT_SUDO_FOREGROUND="123"
-    P9K_CONTEXT_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_CONTEXT_REMOTE_FOREGROUND="123"
-    P9K_CONTEXT_REMOTE_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_CONTEXT_REMOTE_SUDO_FOREGROUND="123"
-    P9K_CONTEXT_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_CONTEXT_ROOT_FOREGROUND="123"
-
-    P9K_HOST_LOCAL_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_HOST_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_HOST_LOCAL_ICON="\uF109 " # 
-    P9K_HOST_REMOTE_ICON="\uF489 "  # 
-
-    P9K_SSH_ICON="\uF489 "  # 
-    P9K_SSH_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_SSH_FOREGROUND="212"
-
-    P9K_OS_ICON_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_OS_ICON_FOREGROUND="212"
-fi
 
 # source plugins and add commands to the PATH
 zplug load
 ################################################################
 # zplug end
+################################################################i
+
+
 ################################################################
-
-
+# PROMPT=PS1
+################################################################
+# 我的PS1i
 # Initialize command prompt
 # export PS1="%n@%m:%~%# "
+# export PS1=$'%{\e[1;37m[ \e[1;31m%n\e[1;37m@\e[1;33m%m \e[1;35m%~ \e[1;37m]\e[0m%#%} '
+# export PS1="${White}[${Reset}${Cyan}${0}:${Reset}${Red}%n${Reset}${White}@${White}] "
+
+# autoload -U promptinit
+# promptinit
+# prompt fade magenta
+
 
 # Enable 256 color to make auto-suggestions look nice
 [[ $TMUX = "" ]] && export TERM="xterm-256color"
@@ -323,17 +341,6 @@ alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
-################################################################
-# PROMPT=PS1
-################################################################
-# 我的PS1
-# export PS1=$'%{\e[1;37m[ \e[1;31m%n\e[1;37m@\e[1;33m%m \e[1;35m%~ \e[1;37m]\e$
-# export PS1="${White}[${Reset}${Cyan}${0} : ${Reset}${Red}%n${Reset}${White}@$$
-
-# autoload -U promptinit
-# promptinit
-# prompt fade magenta
-
 # -------------------------------------------------------------------------------------------------------------------------------
 source $ZSH/oh-my-zsh.sh
 
@@ -367,6 +374,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # colorls
+export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
 source $(dirname $(gem which colorls))/tab_complete.sh
 alias cla="colorls -A"
 alias cld="colorls -d"
@@ -378,3 +386,18 @@ alias clt="colorls --tree"
 alias clgs="colorls --gs"
 alias clsd="colorls -A --sd"
 alias clsf="colorls -A --sf"
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
+# export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
+export FZF_DEFAULT_OPTS='--extended'
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
+
+export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+
+
+

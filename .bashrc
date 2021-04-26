@@ -659,3 +659,7 @@ _isroot=false
 # export NO_PROXY="localhost,127.0.0.1,192.168.1.1,::1,*.local"
 # export https_proxy="http://192.168.43.1:8080/"
 # export HTTPS_PROXY="http://192.168.43.1:8080/"
+
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
