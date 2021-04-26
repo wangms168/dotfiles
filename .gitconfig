@@ -20,3 +20,9 @@
 # 	proxy = http://127.0.0.1:36873/
 # [https]
 # 	proxy = http://127.0.0.1:36873/
+
+[url "https://hub.fastgit.org/"]
+    insteadOf = https://github.com/
+[url "https://raw.fastgit.org/"]
+    insteadOf = https://raw.githubusercontent.com/
+
