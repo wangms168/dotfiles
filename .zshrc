@@ -1,17 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export TERM="xterm-256color"
-# export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
 
 # Path to your oh-my-zsh installation.
-export ZSH_DISABLE_COMPFIX=true
-export ZSH="/home/wangms/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
 ZSH_THEME="fino"
 
 # Set list of themes to pick from when loading at random
@@ -20,29 +16,36 @@ ZSH_THEME="fino"
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# Uncomment the following line to use case-sensitive completion. # 如果想要大小写敏感，可以取消注释下面的一行
+# Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable. # 如果想要连接符不敏感，可以取消注释下面的一行。_ 和 - 将可以互换
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks. # 如果不想要自动更新，可以取消注释下面的一行
+# Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
-# Uncomment the following line to change how often to auto-update (in days). # 自动更新的时间间隔，单位是天，这里设置 17 天更新一次
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
-# Uncomment the following line to disable colors in ls. # 如果不想要 ls 命令输出带颜色，可以取消注释下面的一行
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
+
+# Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
-# Uncomment the following line to disable auto-setting terminal title. # 是否禁止更改终端标题,不要禁止,不然所有终端tab只显示zsh了,而不随着目录的改变而改变显示
+# Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# Uncomment the following line to enable command auto-correction. # 自动纠正命令,不启用,不怎么好用
+# Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion. # 按tab键补全命令的时候,如果没什么可补全的就会出现三个红点,更人性化显示，这里我们启用
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -65,12 +68,42 @@ ZSH_THEME="fino"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(
-#   git
-# )
+plugins=(git)
 
-# 在原.zshrc(copy "～/.oh-my-zsh/templates/zshrc.zsh-template"文件而得)的67-69行间插入如下设置：
-# -------------------------------------------------------------------------------------------------------------------------------
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+# --------------------------------------------------------------------------------------------------------------------------------------------
+
+export TERM="xterm-256color"
+# export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
+
 # Enabling Plugins 启用插件。调用随oh-my-zsh默认安装的包(in ~/.oh-my-zsh/plugins/*)及自己手工下载的包(in ~/.oh-my-zsh/custom/plugins/*)
 plugins=(
     # git            # git别名
@@ -83,9 +116,9 @@ plugins=(
     urltools       # 编码 urlencode http://wdxtub.com;解码 urldecode http%3A%2F%2Fwdxtub.com
 )
 
-################################################################
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # zplug begin
-################################################################
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # Check if zplug is installed
 [ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
 source ~/.zplug/init.zsh
@@ -270,14 +303,13 @@ fi
 
 # source plugins and add commands to the PATH
 zplug load
-################################################################
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # zplug end
-################################################################i
+# --------------------------------------------------------------------------------------------------------------------------------------------
 
-
-################################################################
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # PROMPT=PS1
-################################################################
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # 我的PS1i
 # Initialize command prompt
 # export PS1="%n@%m:%~%# "
@@ -288,7 +320,7 @@ zplug load
 # promptinit
 # prompt fade magenta
 
-
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # Enable 256 color to make auto-suggestions look nice
 [[ $TMUX = "" ]] && export TERM="xterm-256color"
 
@@ -312,16 +344,9 @@ fi
 [ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh"
 [ -f "$HOME/.local/etc/local.zsh" ] && source "$HOME/.local/etc/local.zsh"
 
-
-# Base16 Shell
-# BASE16_SHELL="$HOME/.config/base16-shell/"
-# [ -n "$PS1" ] && \
-#     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-#         eval "$("$BASE16_SHELL/profile_helper.sh")"
-
-################################################################
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # Aliases
-################################################################
+# --------------------------------------------------------------------------------------------------------------------------------------------
 alias zshrc="vim ~/dotfiles/.zshrc"
 # https://wdxtub.com/2016/02/18/oh-my-zsh/
 alias lsi='/opt/coreutils/bin/ls'
@@ -341,39 +366,9 @@ alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
-# -------------------------------------------------------------------------------------------------------------------------------
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # colorls
+# --------------------------------------------------------------------------------------------------------------------------------------------
 export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
 source $(dirname $(gem which colorls))/tab_complete.sh
 alias cla="colorls -A"
@@ -387,7 +382,9 @@ alias clgs="colorls --gs"
 alias clsd="colorls -A --sd"
 alias clsf="colorls -A --sf"
 
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # fzf
+# --------------------------------------------------------------------------------------------------------------------------------------------
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
 # export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
@@ -398,6 +395,4 @@ export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
 
 export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
-
-
 
