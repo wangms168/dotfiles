@@ -1,0 +1,154 @@
+! .Xresources syntax:
+
+! include file (OBS! quotes are important):
+! #include "PATH_RELATIVE_TO_XRESOURCES"
+
+! define variable:
+! #define  VARNAME VALUE
+
+! custom resource:
+! name.class.type: value/variable
+
+! -------------------------------
+
+! commandline commands:
+
+! load xresources:
+! ~/.xinitrc:
+! [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+!
+! ~/.config/i3/config:
+! set $HOME ABSOLUTE_PATH_TO_HOMEFOLDER (/home/bud)
+! exec --no-startup-id xrdb -merge -I$HOME ~/.Xresources
+! exec --no-startup-id exec i3-msg -q restart
+
+! merge new changes:
+! xrdb -merge ~/.Xresources
+
+! replace .Xresources
+! xrdb -load ~/.Xresources
+
+! list current settings in .Xresources:
+! xrdb -query
+
+! list installed fonts:
+! fc-list | grep FONTNAME
+
+! instant font test:
+! printf '\e]710;%s\007' "xft:FONT"
+
+
+! :antialias=false <- if it works for you, its good
+
+! -------------------------------
+
+! use xresource in i3:
+! set_from_resource $VARIABLE  XRESOURCE  DEFAULT_VALUE
+
+! use xresource in polybar:
+! VARNAME = ${xrdb:XRESOURCE:DEFAULT}
+
+! get xresource from script
+! VAR=$(xrdb -query | awk '$1 ~ XRESOURCE":" {print $2}')
+
+! subl --command 'two_face {"face":"solarized-dark"}'
+! syntax:ssExcla
+
+!=====================================================================================
+#include "/home/wangms/dotfiles/solarized-dark"
+! #include "./gruvbox"
+
+#include "/home/wangms/dotfiles/colors"
+#include "/home/wangms/dotfiles/urxvt"
+
+
+
+
+!#include ".Xresources.d/fonts"
+
+!! X application
+!#include ".Xresources.d/xterm"
+!#include ".Xresources.d/xscreensaver"
+
+
+##############
+!# Xft settings
+!##############
+!某些应用程序（例如URxvt）将忽略字体的fontconfig设置。您可以使用来解决此问题~/.Xresources
+!渲染设置也可以针对Xft字体进行调整。请注意，这并非特定于urxvt。
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+Xft.autohint:   false
+Xft.lcdfilter:  lcddefault
+
+
+
+!################
+!# Emacs settings
+!################
+Emacs.font:DejaVuSansMono Nerd Font Mono:regular:antialias=True:pixelsize=16
+Emacs.cursorColor: dark green
+Emacs*cursorBlink: true
+!Emacs.Foreground: black
+!Emacs.Background: white
+Emacs.menuBar: off
+Emacs.toolBar: off
+Emacs.verticalScrollBars: off
+!Emacs.Geometry: 80x25
+Emacs.fullscreen:fullboth
+
+
+
+!################
+!# st settings
+!################
+!! Transparency (0-1):
+st.alpha: 1.0
+
+!! Set a default font and font size as below:
+st.font: DejaVuSansMono Nerd Font Mono:pixelsize=12;Symbola;WenQuanYi Micro Hei Mono:pixelsize=10;
+!;Monospace-12;
+st.bold_font:			0
+st.termname:			xterm
+st.shell:			/usr/bin/zsh
+st.bellvolume:			100
+st.tabspaces:			8
+st.chscale:			1.0
+st.cwscale:			1.0
+
+
+!################
+!# Xterm settings
+!################
+! sudo pacman -Syu --noconfirm --needed xterm
+! 默认使用漂亮的truetype字体和大小...
+XTerm*faceSize: 9
+XTerm*faceName:xft:DejaVuSansMono Nerd Font Mono
+XTerm*faceNameDoublesize:xft:WenQuanYi Micro Hei Mono
+
+! 默认情况下，每个外壳程序都是登录外壳程序（用于包含所有必需的环境变量）
+xterm*loginshell: true
+! 我喜欢很多回滚...
+xterm*savelines: 16384
+! 双击以选择整个URL：D
+xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+! 右侧滚动条...
+xterm*rightScrollBar: true
+xterm*ScrollBar: true
+! 停止从终端再次向下滚动到底部输出到输出
+xterm*scrollTtyOutput: false
+XTerm*letterSpace:-2
+
+XTerm*bellIsUrgent: true
+XTerm*cursorColor: green
+XTerm*locale:  true
+XTerm*metaSendsEscape: true
+XTerm*eightBitInput: false
+XTerm*cursorBlink: true
+XTerm.underlineURLs: true
+XTerm.matcher.button: 1
+XTerm*inheritPixmap: true
+XTerm*dynamicColors: true

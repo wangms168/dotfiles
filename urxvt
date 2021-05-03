@@ -1,0 +1,94 @@
+
+!################
+!# URXVT settings
+!################
+! sudo pacman -Syu --noconfirm --needed rxvt-unicode urxvt-perls
+! yay -S urxvt-font-size-git urxvt-fullscreen rxvt-unicode-better-wheel-scrolling  最后一个未安装成功
+
+! font
+! Using XLFD (created via e.g. xfontsel)
+! URxvt*font:-PfEd-DejaVuSansMono Nerd Font-normal-normal-normal-*-11-*-*-*-*-0-iso10646-1
+! Using Xft
+URxvt.font: xft:DejaVuSansMono\ Nerd\ Font\ Mono:pixelsize=16,\
+	    xft:WenQuanYi\ Micro\ Hei\ Mono:pixelsize=12,\
+	    xft:Symbola:pixelsize=9,\
+!	    xft:PowerlineSymbols:pixelsize=9
+URxvt.letterSpace: -1
+!字体名称最后是Mono的字体、其中含有图标字形可以正常在urxvt中显示;
+!基本字体的像素尺寸及字符间隔像素尺寸都影响含有Unicode图标字形字体的图标字形显示的像素尺寸。
+
+! URxvt.backgroundPixmap:/home/wangms/Pictures/wallpaper2you_396213.jpg
+URxvt*iconFile: /usr/share/app-info/icons/archlinux-arch-community/64x64/rxvt-unicode_utilities-terminal.png
+URxvt.geometry:120x30
+
+!URxvt.loginShell:true
+!URxvt.inputMethod:fcitx
+
+URxvt.mouseWheelScrollPage:true
+URxvt.scrollBar:false
+URxvt.scrollBar_floating:false
+URxvt.scrollstyle:rxvt
+URxvt.scrollTtyOutput:false
+URxvt.scrollWithBuffer:true
+URxvt.scrollTtyKeypress:true
+
+!!!光标闪烁
+URxvt.cursorBlink:true
+URxvt.cursorUnderline:false
+
+URxvt.saveLines:100
+!!!边框
+URxvt.borderLess:false
+
+URxvt.allow_bold:false
+
+URxvt.inheritPixmap:false
+!URxvt.transparent:True
+!URxvt.depth:300
+
+!false
+URxvt.shading:20
+URxvt.intensityStyles: false
+
+!Printing
+URxvt.print-pipe: "cat > /dev/null"
+
+!Copy/Paste and URL handling
+!-*- Perl extensions -*-
+URxvt.perl-ext-common: default,matcher,tabbed
+! Perl extensions of pasta  : https://wiki.gentoo.org/wiki/Rxvt-unicode
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.colorUL: #4682B4
+URxvt.matcher.button: 1
+URxvt.keysym.C-Delete: perl:matcher:last
+URxvt.keysym.M-Delete: perl:matcher:list
+URxvt.matcher.rend.0: Uline Bold fg5
+URxvt.underlineURLs:  True
+
+! clipboard
+! 默认 选中的内容已经复制到剪贴板中了，随后在rxvt中单击鼠标中键、或Shift+Insert即可将选中内容粘贴到其中；反之，从rxvt中向外复制内容同样如此。
+! 默认 C-M c 复制，C-M v 黏贴
+
+! tabbed
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
+
+! 重新启动后，您在终端的顶部有一个标签索引。默认条目为[NEW]和1。这些条目是可单击的。您可以单击[NEW]条目打开一个新标签，也可以单击一个数字以切换到该标签。
+! 您还可以使用键盘与标签互动：
+! Shift+Down    新标签
+! Shift+Left    转到左侧标签
+! Shift+Right   转到右标签
+! Ctrl+Left     将标签向左移动
+! Ctrl+Right    将标签向右移动
+! Ctrl+D        关闭标签
+
+!fullScreen
+!URxvt.keysym.F11: perl:fullscreen:switch
+
+!Icons
+
+!Application icon
+
+
