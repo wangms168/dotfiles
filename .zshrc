@@ -128,7 +128,7 @@ source ~/.zplug/init.zsh
 # zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 
 P9K="ok"
-if [ ! -n "$P9K" ]; then
+if [ -n "$P9K" ]; then
     zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
 fi
 
@@ -142,7 +142,7 @@ if ! zplug check; then
     zplug install
 fi
 
-if [ ! -n "$P9K" ]; then
+if [ -n "$P9K" ]; then
     # powerlevel9k配置
     # https://raw.githubusercontent.com/tonylambiris/dotfiles/devel/dot.zshrc
     if zplug check "bhilburn/powerlevel9k"; then
@@ -386,7 +386,6 @@ alias clsf="colorls -A --sf"
 # --------------------------------------------------------------------------------------------------------------------------------------------
 # fzf
 # --------------------------------------------------------------------------------------------------------------------------------------------
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
 # export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
 export FZF_DEFAULT_OPTS='--extended'
@@ -397,3 +396,9 @@ export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
 export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 
+export GOPROXY=https://goproxy.io,direct
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# proxy
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# export all_proxy=http://192.168.79.1:1080/
+# export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"

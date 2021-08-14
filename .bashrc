@@ -662,4 +662,3 @@ _isroot=false
 
 
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash

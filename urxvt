@@ -9,11 +9,16 @@
 ! Using XLFD (created via e.g. xfontsel)
 ! URxvt*font:-PfEd-DejaVuSansMono Nerd Font-normal-normal-normal-*-11-*-*-*-*-0-iso10646-1
 ! Using Xft
-URxvt.font: xft:DejaVuSansMono\ Nerd\ Font\ Mono:pixelsize=16,\
-	    xft:WenQuanYi\ Micro\ Hei\ Mono:pixelsize=12,\
-	    xft:Symbola:pixelsize=9,\
-!	    xft:PowerlineSymbols:pixelsize=9
-URxvt.letterSpace: -1
+URxvt.font: xft:DejaVuSansMono\ Nerd\ Font\ Mono:pixelsize=13,\
+    xft:WenQuanYi\ Micro\ Hei\ Mono:pixelsize=13:minspace=true,\
+    xft:Symbola:pixelsize=13,\
+!   xft:PowerlineSymbols:pixelsize=13
+URxvt.boldFont: xft:DejaVuSansMono\ Nerd\ Font\ Mono:pixelsize=13,\
+    xft:WenQuanYi\ Micro\ Hei\ Mono:pixelsize=13:minspace=true,\
+    xft:Symbola:pixelsize=13,\
+!   xft:PowerlineSymbols:pixelsize=13
+
+Rxvt.letterSpace: -1
 !字体名称最后是Mono的字体、其中含有图标字形可以正常在urxvt中显示;
 !基本字体的像素尺寸及字符间隔像素尺寸都影响含有Unicode图标字形字体的图标字形显示的像素尺寸。
 
@@ -36,7 +41,7 @@ URxvt.scrollTtyKeypress:true
 URxvt.cursorBlink:true
 URxvt.cursorUnderline:false
 
-URxvt.saveLines:100
+URxvt*saveLines: 12000
 !!!边框
 URxvt.borderLess:false
 
@@ -52,6 +57,7 @@ URxvt.intensityStyles: false
 
 !Printing
 URxvt.print-pipe: "cat > /dev/null"
+
 
 !Copy/Paste and URL handling
 !-*- Perl extensions -*-

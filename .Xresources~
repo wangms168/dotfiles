@@ -37,7 +37,7 @@
 ! instant font test:
 ! printf '\e]710;%s\007' "xft:FONT"
 
- 
+
 ! :antialias=false <- if it works for you, its good
 
 ! -------------------------------
@@ -55,17 +55,25 @@
 ! syntax:ssExcla
 
 !=====================================================================================
-! #include "/home/wangms/dotfiles/solarized-dark"
+#include "/home/wangms/dotfiles/solarized-dark"
 ! #include "./gruvbox"
-! #include "/home/wangms/dotfiles/colors"
-! #include "dotfiles/space-vim-dark.xresources"
-#include "dotfiles/base16-xresources/xresources/base16-spacemacs-256.Xresources"
-#include "dotfiles/urxvt"
+
+#include "/home/wangms/dotfiles/colors"
+#include "/home/wangms/dotfiles/urxvt"
 
 
-!################
+
+
+!#include ".Xresources.d/fonts"
+
+!! X application
+!#include ".Xresources.d/xterm"
+!#include ".Xresources.d/xscreensaver"
+
+
+##############
 !# Xft settings
-!################
+!##############
 !某些应用程序（例如URxvt）将忽略字体的fontconfig设置。您可以使用来解决此问题~/.Xresources
 !渲染设置也可以针对Xft字体进行调整。请注意，这并非特定于urxvt。
 Xft.dpi:        96
@@ -76,8 +84,7 @@ Xft.hintstyle:  hintslight
 Xft.autohint:   false
 Xft.lcdfilter:  lcddefault
 
-!==================================================================================
-Vim*font:DejaVuSansMono Nerd Font Mono:regular:antialias=True:pixelsize=16
+
 
 !################
 !# Emacs settings
