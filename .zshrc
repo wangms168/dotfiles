@@ -370,18 +370,18 @@ alias -s bz2='tar -xjvf'
 # --------------------------------------------------------------------------------------------------------------------------------------------
 # colorls
 # --------------------------------------------------------------------------------------------------------------------------------------------
-export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
-source $(dirname $(gem which colorls))/tab_complete.sh
-alias cla="colorls -A"
-alias cld="colorls -d"
-alias clf="colorls -f"
-alias clh="colorls -h"
-alias cll="colorls -l"
-alias clr="colorls -r"
-alias clt="colorls --tree"
-alias clgs="colorls --gs"
-alias clsd="colorls -A --sd"
-alias clsf="colorls -A --sf"
+# export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
+# source $(dirname $(gem which colorls))/tab_complete.sh
+# alias cla="colorls -A"
+# alias cld="colorls -d"
+# alias clf="colorls -f"
+# alias clh="colorls -h"
+# alias cll="colorls -l"
+# alias clr="colorls -r"
+# alias clt="colorls --tree"
+# alias clgs="colorls --gs"
+# alias clsd="colorls -A --sd"
+# alias clsf="colorls -A --sf"
 
 # --------------------------------------------------------------------------------------------------------------------------------------------
 # fzf
