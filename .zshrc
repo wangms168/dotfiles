@@ -419,5 +419,5 @@ export GOPROXY=https://goproxy.io,direct
 # --------------------------------------------------------------------------------------------------------------------------------------------
 # proxygabrielelana/awesome-terminal-fonts
 # --------------------------------------------------------------------------------------------------------------------------------------------
-# Load all symbol font maps
+# Load all symbol font maps   source ~/.fonts/*.sh NO!!
 for map in ~/.fonts/*.sh; do source $map; done
