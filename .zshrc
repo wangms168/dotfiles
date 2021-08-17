@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="fino"
+ZSH_THEME="cc"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -17,14 +17,14 @@ ZSH_THEME="fino"
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
@@ -39,7 +39,7 @@ ZSH_THEME="fino"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -68,8 +68,8 @@ ZSH_THEME="fino"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
+plugins=('time' 'text' 'dotenv' 'chunkly' 'git' 'ruby' 'rails' 'rvm' 'gem' 'heroku' 'colors' 'nvm' 'composer' 'python-environment')
+# merge gabrielelana/dotfiles  # https://github.com/gabrielelana/dotfiles 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -99,15 +99,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-# 用户自己的设置
+# Customize to your needs...用户自己的设置
 # --------------------------------------------------------------------------------------------------------------------------------------------
-
-export TERM="xterm-256color"
-# export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
 
 # Enabling Plugins 启用插件。调用随oh-my-zsh默认安装的包(in ~/.oh-my-zsh/plugins/*)及自己手工下载的包(in ~/.oh-my-zsh/custom/plugins/*)
 plugins=(
-    # git            # git别名
     autojump
     z              #同autojump插件，她会记录进入过的文件夹，下次再进入只要输入很少的内容即可
     extract        #解压插件，x filename 即可，不用再记忆各类参数
@@ -127,7 +123,7 @@ source ~/.zplug/init.zsh
 # oh-my-zsh
 # zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 
-P9K="ok"
+P9K=""
 if [ -n "$P9K" ]; then
     zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
 fi
@@ -323,7 +319,13 @@ zplug load
 
 # --------------------------------------------------------------------------------------------------------------------------------------------
 # Enable 256 color to make auto-suggestions look nice
-[[ $TMUX = "" ]] && export TERM="xterm-256color"
+# [[ $TMUX = "" ]] && export TERM="xterm-256color"
+# export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
+export TERM="xterm-256color"
+export EDITOR="emacs-client"
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+export PYTHON="python2.7"
 
 # Load local bash/zsh compatible settings
 _INIT_SH_NOFUN=1
@@ -348,6 +350,16 @@ fi
 # --------------------------------------------------------------------------------------------------------------------------------------------
 # Aliases
 # --------------------------------------------------------------------------------------------------------------------------------------------
+alias "."="cd ."
+alias ".."="cd .."
+{ local alias_from=".."
+  local alias_to="cd .."
+  for _pit in {1..42}; do
+    alias_from="$alias_from."
+    alias_to="$alias_to/.."
+    eval "alias ${alias_from}=\"${alias_to}\""
+  done
+}
 alias zshrc="vim ~/dotfiles/.zshrc"
 # https://wdxtub.com/2016/02/18/oh-my-zsh/
 alias lsi='/opt/coreutils/bin/ls'
