@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="cc"
+# ZSH_THEME="cc"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -123,25 +130,21 @@ source ~/.zplug/init.zsh
 # oh-my-zsh
 # zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 
-P9K=""
-if [ -n "$P9K" ]; then
-    zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
-fi
-
 # zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "romkatv/powerlevel10k", as:theme, depth:1
+# POWERLEVEL10K_MODE='nerdfont-complete'      # pacman -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
+# ZSH_THEME=powerlevel10k/powerlevel10k
 
-# zplug check returns true if all packages are installed
-# Therefore, when it returns false, run zplug install
-if ! zplug check; then
-    zplug install
-fi
-
+P9K=""
 if [ -n "$P9K" ]; then
+    zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
+
     # powerlevel9k配置
     # https://raw.githubusercontent.com/tonylambiris/dotfiles/devel/dot.zshrc
     if zplug check "bhilburn/powerlevel9k"; then
+
         # Easily switch primary foreground/background colors
         #    DEFAULT_FOREGROUND=038 DEFAULT_BACKGROUND=024 PROMPT_COLOR=038
         #    DEFAULT_FOREGROUND=006 DEFAULT_BACKGROUND=235 PROMPT_COLOR=173
@@ -150,6 +153,8 @@ if [ -n "$P9K" ]; then
         #    DEFAULT_FOREGROUND=123 DEFAULT_BACKGROUND=059 PROMPT_COLOR=183
         #    DEFAULT_FOREGROUND=159 DEFAULT_BACKGROUND=238 PROMPT_COLOR=173
         #    DEFAULT_FOREGROUND=159
+            
+        P9K_MODE="nerdfont-complete"    # pacman -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
         DEFAULT_BACKGROUND=239
         PROMPT_COLOR=172
         DEFAULT_COLOR="clear"
@@ -297,6 +302,11 @@ if zplug check "zsh-users/zsh-syntax-highlighting"; then
     ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor line)
 fi
 
+# zplug check returns true if all packages are installed
+# Therefore, when it returns false, run zplug install
+if ! zplug check; then
+    zplug install
+fi
 
 # source plugins and add commands to the PATH
 zplug load
@@ -421,3 +431,6 @@ export GOPROXY=https://goproxy.io,direct
 # --------------------------------------------------------------------------------------------------------------------------------------------
 # Load all symbol font maps   source ~/.fonts/*.sh NO!!
 for map in ~/.fonts/*.sh; do source $map; done
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
