@@ -133,13 +133,26 @@ source ~/.zplug/init.zsh
 # zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "romkatv/powerlevel10k", as:theme, depth:1
-# POWERLEVEL10K_MODE='nerdfont-complete'      # pacman -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
-# ZSH_THEME=powerlevel10k/powerlevel10k
 
-P9K=""
-if [ -n "$P9K" ]; then
+P9K="ok"
+if [ -z "$P9K" ]; then 
+    zplug "romkatv/powerlevel10k", as:theme, depth:1
+    if zplug check "bhilburn/powerlevel9k"; then
+        zplug clean
+        if [ -f ~/.p10k.zsh.back ]; then 
+            mv ~/.p10k.zsh.back ~/.p10k.zsh
+        fi
+    fi
+    # POWERLEVEL10K_MODE='nerdfont-complete'      # yay -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
+    # ZSH_THEME=powerlevel10k/powerlevel10k
+else
     zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
+    if zplug check "romkatv/powerlevel10k"; then
+        zplug clean
+        if [ -f ~/.p10k.zsh ]; then 
+            mv ~/.p10k.zsh ~/.p10k.zsh.back
+        fi
+    fi
 
     # powerlevel9k配置
     # https://raw.githubusercontent.com/tonylambiris/dotfiles/devel/dot.zshrc
