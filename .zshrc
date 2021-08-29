@@ -345,7 +345,7 @@ zplug load
 # [[ $TMUX = "" ]] && export TERM="xterm-256color"
 # export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
 export TERM="xterm-256color"
-export EDITOR="emacs-client"
+export EDITOR="vim"
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export PYTHON="python2.7"
@@ -439,11 +439,6 @@ export GOPROXY=https://goproxy.io,direct
 # export all_proxy=http://192.168.79.1:1080/
 # export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
 
-# --------------------------------------------------------------------------------------------------------------------------------------------
-# proxygabrielelana/awesome-terminal-fonts
-# --------------------------------------------------------------------------------------------------------------------------------------------
-# Load all symbol font maps   source ~/.fonts/*.sh NO!!
-for map in ~/.fonts/*.sh; do source $map; done
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
