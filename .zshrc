@@ -134,7 +134,7 @@ source ~/.zplug/init.zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
-P9K="ok"
+P9K=""
 if [ -z "$P9K" ]; then 
     zplug "romkatv/powerlevel10k", as:theme, depth:1
     if zplug check "bhilburn/powerlevel9k"; then
