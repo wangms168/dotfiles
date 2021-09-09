@@ -1,6 +1,6 @@
-# Welcome to my dotfiles repository
+## Welcome to my dotfiles repository
 
-## 建立配置文件的软连接：
+### 建立配置文件的软连接：
 
 ```
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
