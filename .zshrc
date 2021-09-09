@@ -167,7 +167,7 @@ else
         #    DEFAULT_FOREGROUND=159 DEFAULT_BACKGROUND=238 PROMPT_COLOR=173
         #    DEFAULT_FOREGROUND=159
             
-        P9K_MODE="nerdfont-complete"    # pacman -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
+        P9K_MODE='nerdfont-fontconfig'         # "nerdfont-complete"    # pacman -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
         DEFAULT_BACKGROUND=239
         PROMPT_COLOR=172
         DEFAULT_COLOR="clear"
@@ -387,8 +387,7 @@ alias zshrc="vim ~/dotfiles/.zshrc"
 # https://wdxtub.com/2016/02/18/oh-my-zsh/
 alias lsi='/opt/coreutils/bin/ls'
 # export PATH=$PATH:/opt/coreutils/bin
-alias cle='clear'
-alias l.='ls -d .* --color=auto'
+alias ls='lsd'
 alias grep="grep --color=auto"
 alias -s html='vim'        # 在命令行直接输入后缀为 html 的文件名，会在 Vim 中打开
 alias -s rb='vim'          # 在命令行直接输入 ruby 文件，会在 Vim 中打开
@@ -442,3 +441,4 @@ export GOPROXY=https://goproxy.io,direct
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export NNN_PLUG='f:finder;o:fzopen;p:mocplay;d:diffs;t:nmount;v:imgview'
