@@ -12,6 +12,7 @@ ln -sf ~/dotfiles/.gitconfig ~
 ln -sf ~/dotfiles/.xprofile ~
 ln -sf ~/dotfiles/.Xresources ~
 ln -sf ~/dotfiles/.zshrc ~
+ln -sf ~/dotfiles/.xprofile ~
 
 ```
 
