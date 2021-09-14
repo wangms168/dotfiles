@@ -9,11 +9,10 @@
 	diff = true
 [alias]
     s=status
-    a=add .
-    c=commit -m
     d=difftool
     p=push origin master
     l=log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lazy = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 [credential]
 	helper = store
 # [http]
