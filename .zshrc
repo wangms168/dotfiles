@@ -529,7 +529,4 @@ export GOPROXY=https://goproxy.io,direct
 # export all_proxy=http://192.168.79.1:1080/
 # export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-export NNN_PLUG='f:finder;o:fzopen;p:mocplay;d:diffs;t:nmount;v:imgview'
+export RANGER_LOAD_DEFAULT_RC=FALSE
