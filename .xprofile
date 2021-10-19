@@ -5,4 +5,3 @@ export XMODIFIERS="@im=fcitx"
 # 解决中文乱码
 # export LANG="zh_CN.UTF-8"
 # export LC_CTYPE="zh_CN.UTF-8"
-
