@@ -1,3 +1,8 @@
+PATH="$PATH:/$HOME/.local/bin/scripts"      
+PATH="$PATH:/$HOME/.local/bin/statusbar"
+PATH="$PATH:/$HOME/.local/bin/dwmscripts"
+PATH="$PATH:/$HOME/.local/bin/my.scripts"
+
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"

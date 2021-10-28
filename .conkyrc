@@ -31,7 +31,7 @@ background_color = 'FFFF00',
 
 --#############################################################
 use_xft = true,
-font = 'Roboto:size=9',
+font = 'monospace:size=9',
 xftalpha = 0.8,
 text_buffer_size = 256,
 --############################################################
@@ -68,7 +68,7 @@ ${image /home/wangms/dotfiles/ARCH-V-1/img//arch-haskell.png -p 0,4 -s 50x46}${v
 ${alignc}${font sirclive:bold:size=14}${goto 75}ARCH${font}${voffset -5}
 ${voffset 10}${font Ubuntu:bold:size=11}${goto 157}LINUX${voffset -2}
 ${font Arial:bold:size=15}${time %H:%M:%S}${font}${voffset -4}${font Ubuntu:bold:size=10}${goto 162}XFCE${voffset 3}${font}
-${font Arial:size=10}${voffset 2}${alignc}${time %A, %d %B %Y}${font} 
+${font WenQuanYi Micro Hei Mono:size=10}${voffset 2}${alignc}${time %A, %d %B %Y}${font} 
 ${stippled_hr}
  Kernel: ${alignr}${kernel}${voffset 4}
 ${font StyleBats:size=18}q${font}${voffset -5} Uptime: ${alignr}${uptime}${voffset 5}

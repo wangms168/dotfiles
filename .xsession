@@ -5,12 +5,12 @@ pamac-tray &
 
 dex -a &
 # xrandr --output Virtual1 --mode 1920x1080 &
-picom -CGb &
+# picom -CGb &
 ~/.fehbg &
 # nitrogen --restore &
 
-# dwmblocks 2>&1 >/dev/null &
-slstatus 2>&1 >/dev/null &
+dwmblocks 2>&1 >/dev/null &
+# slstatus 2>&1 >/dev/null &
 
 # conky 
 pkill conky 
