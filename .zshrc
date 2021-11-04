@@ -515,8 +515,8 @@ alias -s bz2='tar -xjvf'
 export FZF_COMPLETION_TRIGGER='~~'
 # export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
 export FZF_DEFAULT_COMMAND='find -type f'
-export FZF_DEFAULT_OPTS="--height 40% --layout reverse --info=inline --border \
-    --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --info=inline --border \
+    --color='fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
