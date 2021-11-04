@@ -436,6 +436,7 @@ zplug load
 # [[ $TMUX = "" ]] && export TERM="xterm-256color"
 # export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
 export TERM="xterm-256color"
+export TERMINAL="st"
 export EDITOR="vim"
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
@@ -511,15 +512,18 @@ alias -s bz2='tar -xjvf'
 # --------------------------------------------------------------------------------------------------------------------------------------------
 # fzf
 # --------------------------------------------------------------------------------------------------------------------------------------------
-export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
-# export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
-export FZF_DEFAULT_OPTS='--extended'
+export FZF_COMPLETION_TRIGGER='~~'
+# export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
+export FZF_DEFAULT_COMMAND='find -type f'
+export FZF_DEFAULT_OPTS="--height 40% --layout reverse --border \
+    --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
 
-export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
+export FZF_ALT_C_COMMAND='find -type d'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+
 
 export GOPROXY=https://goproxy.io,direct
 
@@ -530,3 +534,4 @@ export GOPROXY=https://goproxy.io,direct
 # export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
 
 export RANGER_LOAD_DEFAULT_RC=FALSE
+
