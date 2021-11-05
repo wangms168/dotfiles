@@ -2,8 +2,8 @@ PATH="$PATH:/$HOME/.local/bin"
 PATH="$PATH:/$HOME/.local/bin/scripts"      
 PATH="$PATH:/$HOME/.local/bin/statusbar"
 PATH="$PATH:/$HOME/.local/bin/dwmscripts"
-# PATH="$PATH:/$HOME/.local/bin/my.scripts"
-PATH="$PATH:/$HOME/.local/bin/BUTTON-scripts"
+PATH="$PATH:/$HOME/.local/bin/torr-dwmblocks"
+# PATH="$PATH:/$HOME/.local/bin/Luke-dwmblocks"
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx

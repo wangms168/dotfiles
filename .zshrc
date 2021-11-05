@@ -535,3 +535,4 @@ export GOPROXY=https://goproxy.io,direct
 
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
+source /usr/share/doc/pkgfile/command-not-found.zsh
