@@ -9,9 +9,11 @@ dex -a &
 ~/.fehbg &
 # nitrogen --restore &
 
+pkill dwmblocks 
 dwmblocks 2>&1 >/dev/null &
 # slstatus 2>&1 >/dev/null &
 
 # conky 
 pkill conky 
 conky -b &
+plank 2>&1 >/dev/null &

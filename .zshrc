@@ -514,14 +514,14 @@ alias -s bz2='tar -xjvf'
 # --------------------------------------------------------------------------------------------------------------------------------------------
 export FZF_COMPLETION_TRIGGER='~~'
 # export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
-export FZF_DEFAULT_COMMAND='find -type f'
+# export FZF_DEFAULT_COMMAND='find -type f'
+# export FZF_DEFAULT_COMMAND='fzf'
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!node_modules/*" --glob "!vendor/*" 2> /dev/null'
 export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --info=inline --border \
     --color='fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"
-
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
-
-export FZF_ALT_C_COMMAND='find -type d'
+# export FZF_ALT_C_COMMAND='find -type d'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 
 
