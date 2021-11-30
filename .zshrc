@@ -15,7 +15,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="cc"
+ZSH_THEME=robbyrussell
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -134,236 +134,238 @@ source ~/.zplug/init.zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
-P9K=""
-if [ -z "$P9K" ]; then 
-    zplug "romkatv/powerlevel10k", as:theme, depth:1
-    if zplug check "bhilburn/powerlevel9k"; then
-        zplug clean
-        if [ -f ~/.p10k.zsh.back ]; then 
-            mv ~/.p10k.zsh.back ~/.p10k.zsh
+if [ -z "ZSH_THEME" ]; then
+    P9K=""
+    if [ -z "$P9K" ]; then 
+        zplug "romkatv/powerlevel10k", as:theme, depth:1
+        if zplug check "bhilburn/powerlevel9k"; then
+            zplug clean
+            if [ -f ~/.p10k.zsh.back ]; then 
+                mv ~/.p10k.zsh.back ~/.p10k.zsh
+            fi
         fi
-    fi
-    ZSH_THEME="powerlevel9k/powerlevel9k"
-    POWERLEVEL9K_MODE='nerdfont-fontconfig'
+        ZSH_THEME="powerlevel9k/powerlevel9k"
+        POWERLEVEL9K_MODE='nerdfont-fontconfig'
+        
+        ## 
+        POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+        POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
+        POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
+        
+        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir dir_writable_joined)
+        POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{045}\u256D\u2500%F{white}"
+        # POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{045}\u2570\uf460%F{white} "
+        POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{045}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
+        
+        # dir
+        POWERLEVEL9K_SHORTEN_DELIMITER=''
+        POWERLEVEL9K_SHORTEN_DIR_LENGTH=7
+        POWERLEVEL9K_SHORTEN_STRATEGY='truncate_to_first_and_last'
+        
+        # Home Root 
+        POWERLEVEL9K_DIR_HOME_BACKGROUND='none'
+        POWERLEVEL9K_DIR_HOME_FOREGROUND='045'
+        
+        # Root sub dir
+        POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='none'
+        POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='045'
+        # user dir
+        POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='none'
+        POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='005'
+        
+        # ect dir 
+        POWERLEVEL9K_DIR_ETC_BACKGROUND='none'
+        POWERLEVEL9K_DIR_ETC_FOREGROUND='005'
+        
+        # 禁止编辑
+        POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="none"
+        POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="red"
+        
+        # RIGHT_PROMP
+        # ===========================================================
+        POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time vcs background_jobs_joined battery time_joined)
+        
+        POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
+        POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=''
+        
+        # change
+        POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='none'
+        POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='003'
+        
+        POWERLEVEL9K_VCS_CLEAN_BACKGROUND='none'
+        POWERLEVEL9K_VCS_CLEAN_FOREGROUND='045'
+        
+        POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='none'
+        POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='005'
+        
+        
+        # INDICATOR
+        POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="none"
+        POWERLEVEL9K_ROOT_INDICATOR_FOREGROUND="white"
+        
+        POWERLEVEL9K_STATUS_OK_BACKGROUND="none"
+        POWERLEVEL9K_STATUS_OK_FOREGROUND="green"
+        
+        POWERLEVEL9K_STATUS_ERROR_BACKGROUND="none"
+        POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
+        
+        # TIME 
+        # POWERLEVEL9K_TIME_FORMAT="%D{%Y-%m-%d,%H:%M:%S}"
+        POWERLEVEL9K_TIME_ICON=''
+        POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uf017 %d.%m \uf073}"
+        POWERLEVEL9K_TIME_BACKGROUND="none"
+        POWERLEVEL9K_TIME_FOREGROUND="cyan"
+        
+        # battery 电池
+        POWERLEVEL9K_BATTERY_LOW_BACKGROUND='none'
+        POWERLEVEL9K_BATTERY_LOW_FOREGROUND='001'
+        POWERLEVEL9K_BATTERY_CHARGING_BACKGROUND='none'
+        POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND='076'
+        POWERLEVEL9K_BATTERY_CHARGED_BACKGROUND='none'
+        POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND='076'
+        POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND='none'
+        POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND='003'
+        POWERLEVEL9K_BATTERY_LOW_THRESHOLD=15
+        POWERLEVEL9K_BATTERY_VERBOSE=false
+        # POWERLEVEL9K_BATTERY_STAGES=''
+        
+        POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='none'
+        POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='magenta'
+        
+        POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND='none'
+        POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='green'
     
-    ## 
-    POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-    POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
-    POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
-    
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir dir_writable_joined)
-    POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{045}\u256D\u2500%F{white}"
-    # POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{045}\u2570\uf460%F{white} "
-    POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{045}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
-    
-    # dir
-    POWERLEVEL9K_SHORTEN_DELIMITER=''
-    POWERLEVEL9K_SHORTEN_DIR_LENGTH=7
-    POWERLEVEL9K_SHORTEN_STRATEGY='truncate_to_first_and_last'
-    
-    # Home Root 
-    POWERLEVEL9K_DIR_HOME_BACKGROUND='none'
-    POWERLEVEL9K_DIR_HOME_FOREGROUND='045'
-    
-    # Root sub dir
-    POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='none'
-    POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='045'
-    # user dir
-    POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='none'
-    POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='005'
-    
-    # ect dir 
-    POWERLEVEL9K_DIR_ETC_BACKGROUND='none'
-    POWERLEVEL9K_DIR_ETC_FOREGROUND='005'
-    
-    # 禁止编辑
-    POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="none"
-    POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="red"
-    
-    # RIGHT_PROMP
-    # ===========================================================
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time vcs background_jobs_joined battery time_joined)
-    
-    POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
-    POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=''
-    
-    # change
-    POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='none'
-    POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='003'
-    
-    POWERLEVEL9K_VCS_CLEAN_BACKGROUND='none'
-    POWERLEVEL9K_VCS_CLEAN_FOREGROUND='045'
-    
-    POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='none'
-    POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='005'
-    
-    
-    # INDICATOR
-    POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="none"
-    POWERLEVEL9K_ROOT_INDICATOR_FOREGROUND="white"
-    
-    POWERLEVEL9K_STATUS_OK_BACKGROUND="none"
-    POWERLEVEL9K_STATUS_OK_FOREGROUND="green"
-    
-    POWERLEVEL9K_STATUS_ERROR_BACKGROUND="none"
-    POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
-    
-    # TIME 
-    # POWERLEVEL9K_TIME_FORMAT="%D{%Y-%m-%d,%H:%M:%S}"
-    POWERLEVEL9K_TIME_ICON=''
-    POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uf017 %d.%m \uf073}"
-    POWERLEVEL9K_TIME_BACKGROUND="none"
-    POWERLEVEL9K_TIME_FOREGROUND="cyan"
-    
-    # battery 电池
-    POWERLEVEL9K_BATTERY_LOW_BACKGROUND='none'
-    POWERLEVEL9K_BATTERY_LOW_FOREGROUND='001'
-    POWERLEVEL9K_BATTERY_CHARGING_BACKGROUND='none'
-    POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND='076'
-    POWERLEVEL9K_BATTERY_CHARGED_BACKGROUND='none'
-    POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND='076'
-    POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND='none'
-    POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND='003'
-    POWERLEVEL9K_BATTERY_LOW_THRESHOLD=15
-    POWERLEVEL9K_BATTERY_VERBOSE=false
-    # POWERLEVEL9K_BATTERY_STAGES=''
-    
-    POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='none'
-    POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='magenta'
-    
-    POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND='none'
-    POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='green'
-
-    # POWERLEVEL10K_MODE='nerdfont-complete'      # yay -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
-    # ZSH_THEME=powerlevel10k/powerlevel10k
-else
-    # zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
-    zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
-    if zplug check "romkatv/powerlevel10k"; then
-        zplug clean
-        if [ -f ~/.p10k.zsh ]; then 
-            mv ~/.p10k.zsh ~/.p10k.zsh.back
+        # POWERLEVEL10K_MODE='nerdfont-complete'      # yay -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
+        # ZSH_THEME=powerlevel10k/powerlevel10k
+    else
+        # zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
+        zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
+        if zplug check "romkatv/powerlevel10k"; then
+            zplug clean
+            if [ -f ~/.p10k.zsh ]; then 
+                mv ~/.p10k.zsh ~/.p10k.zsh.back
+            fi
         fi
-    fi
-    # powerlevel9k配置
-    # https://raw.githubusercontent.com/tonylambiris/dotfiles/devel/dot.zshrc
-    if zplug check "bhilburn/powerlevel9k"; then
-
-        # Easily switch primary foreground/background colors
-        #    DEFAULT_FOREGROUND=038 DEFAULT_BACKGROUND=024 PROMPT_COLOR=038
-        #    DEFAULT_FOREGROUND=006 DEFAULT_BACKGROUND=235 PROMPT_COLOR=173
-        #    DEFAULT_FOREGROUND=198 DEFAULT_BACKGROUND=090 PROMPT_COLOR=173
-        #    DEFAULT_FOREGROUND=235 DEFAULT_BACKGROUND=159 PROMPT_COLOR=173
-        #    DEFAULT_FOREGROUND=123 DEFAULT_BACKGROUND=059 PROMPT_COLOR=183
-        #    DEFAULT_FOREGROUND=159 DEFAULT_BACKGROUND=238 PROMPT_COLOR=173
-        #    DEFAULT_FOREGROUND=159
-            
-        P9K_MODE='nerdfont-fontconfig'         # "nerdfont-complete"    # pacman -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
-        DEFAULT_BACKGROUND=239
-        PROMPT_COLOR=172
-        DEFAULT_COLOR="clear"
+        # powerlevel9k配置
+        # https://raw.githubusercontent.com/tonylambiris/dotfiles/devel/dot.zshrc
+        if zplug check "bhilburn/powerlevel9k"; then
     
-        P9K_MODE="nerdfont-complete"    # pacman -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
-        P9K_STATUS_VERBOSE=false
-        P9K_DIR_SHORTEN_LENGTH=1
-    
-        P9K_DIR_OMIT_FIRST_CHARACTER=false
-    
-        P9K_CONTEXT_ALWAYS_SHOW=true
-        P9K_CONTEXT_ALWAYS_SHOW_USER=false
-    
-        P9K_LEFT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
-        P9K_RIGHT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
-        P9K_LEFT_SEGMENT_SEPARATOR_ICON='▓▒░'
-        P9K_RIGHT_SEGMENT_SEPARATOR_ICON='░▒▓'
-    
-        P9K_PROMPT_ON_NEWLINE=true
-        P9K_RPROMPT_ON_NEWLINE=false
-    
-        P9K_STATUS_VERBOSE=true
-        P9K_STATUS_CROSS=true
-        P9K_PROMPT_ADD_NEWLINE=true
-    
-        P9K_MULTILINE_FIRST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}%f"
-        P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}➜ %f"
-    
-        P9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs)
-        P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time)
-    
-        P9K_VCS_GIT_GITHUB_ICON=""
-        P9K_VCS_GIT_BITBUCKET_ICON=""
-        P9K_VCS_GIT_GITLAB_ICON=""
-        P9K_VCS_GIT_ICON=""
-    
-        P9K_VCS_CLEAN_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_VCS_CLEAN_FOREGROUND="010"
-    
-        P9K_VCS_MODIFIED_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_VCS_MODIFIED_FOREGROUND="011"
-    
-        P9K_VCS_UNTRACKED_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_VCS_UNTRACKED_FOREGROUND="011"
-    
-        P9K_DIR_HOME_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_DIR_HOME_FOREGROUND="158"
-        P9K_DIR_HOME_SUBFOLDER_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_DIR_HOME_SUBFOLDER_FOREGROUND="158"
-        P9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_DIR_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_DIR_DEFAULT_FOREGROUND="158"
-        P9K_DIR_ETC_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_DIR_ETC_FOREGROUND="158"
-        P9K_DIR_NOT_WRITABLE_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_DIR_NOT_WRITABLE_FOREGROUND="158"
-    
-        P9K_ROOT_INDICATOR_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_ROOT_INDICATOR_FOREGROUND="red"
-    
-        P9K_STATUS_OK_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_STATUS_OK_FOREGROUND="green"
-        P9K_STATUS_ERROR_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_STATUS_ERROR_FOREGROUND="red"
-    
-        P9K_TIME_ICON="\uF017" # 
-        P9K_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_TIME_FOREGROUND="183"
-    
-        P9K_COMMAND_EXECUTION_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
-        P9K_COMMAND_EXECUTION_TIME_PRECISION=1
-    
-        P9K_BACKGROUND_JOBS_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_BACKGROUND_JOBS_FOREGROUND="123"
-    
-        P9K_USER_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_USER_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_USER_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_USER_DEFAULT_ICON="\uF415" # 
-        P9K_USER_ROOT_ICON=$'\uFF03' # ＃
-    
-        P9K_CONTEXT_TEMPLATE="\uF109 %m"
-        P9K_CONTEXT_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_CONTEXT_DEFAULT_FOREGROUND="123"
-        P9K_CONTEXT_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_CONTEXT_SUDO_FOREGROUND="123"
-        P9K_CONTEXT_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_CONTEXT_REMOTE_FOREGROUND="123"
-        P9K_CONTEXT_REMOTE_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_CONTEXT_REMOTE_SUDO_FOREGROUND="123"
-        P9K_CONTEXT_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_CONTEXT_ROOT_FOREGROUND="123"
-    
-        P9K_HOST_LOCAL_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_HOST_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_HOST_LOCAL_ICON="\uF109 " # 
-        P9K_HOST_REMOTE_ICON="\uF489 "  # 
-    
-        P9K_SSH_ICON="\uF489 "  # 
-        P9K_SSH_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_SSH_FOREGROUND="212"
-    
-        P9K_OS_ICON_BACKGROUND="$DEFAULT_BACKGROUND"
-        P9K_OS_ICON_FOREGROUND="212"
+            # Easily switch primary foreground/background colors
+            #    DEFAULT_FOREGROUND=038 DEFAULT_BACKGROUND=024 PROMPT_COLOR=038
+            #    DEFAULT_FOREGROUND=006 DEFAULT_BACKGROUND=235 PROMPT_COLOR=173
+            #    DEFAULT_FOREGROUND=198 DEFAULT_BACKGROUND=090 PROMPT_COLOR=173
+            #    DEFAULT_FOREGROUND=235 DEFAULT_BACKGROUND=159 PROMPT_COLOR=173
+            #    DEFAULT_FOREGROUND=123 DEFAULT_BACKGROUND=059 PROMPT_COLOR=183
+            #    DEFAULT_FOREGROUND=159 DEFAULT_BACKGROUND=238 PROMPT_COLOR=173
+            #    DEFAULT_FOREGROUND=159
+                
+            P9K_MODE='nerdfont-fontconfig'         # "nerdfont-complete"    # pacman -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
+            DEFAULT_BACKGROUND=239
+            PROMPT_COLOR=172
+            DEFAULT_COLOR="clear"
+        
+            P9K_MODE="nerdfont-complete"    # pacman -Syu nerd-fonts-dejavu-complete       dejavu字体加nerd-fonts全套的字形集。
+            P9K_STATUS_VERBOSE=false
+            P9K_DIR_SHORTEN_LENGTH=1
+        
+            P9K_DIR_OMIT_FIRST_CHARACTER=false
+        
+            P9K_CONTEXT_ALWAYS_SHOW=true
+            P9K_CONTEXT_ALWAYS_SHOW_USER=false
+        
+            P9K_LEFT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
+            P9K_RIGHT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
+            P9K_LEFT_SEGMENT_SEPARATOR_ICON='▓▒░'
+            P9K_RIGHT_SEGMENT_SEPARATOR_ICON='░▒▓'
+        
+            P9K_PROMPT_ON_NEWLINE=true
+            P9K_RPROMPT_ON_NEWLINE=false
+        
+            P9K_STATUS_VERBOSE=true
+            P9K_STATUS_CROSS=true
+            P9K_PROMPT_ADD_NEWLINE=true
+        
+            P9K_MULTILINE_FIRST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}%f"
+            P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}➜ %f"
+        
+            P9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs)
+            P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time)
+        
+            P9K_VCS_GIT_GITHUB_ICON=""
+            P9K_VCS_GIT_BITBUCKET_ICON=""
+            P9K_VCS_GIT_GITLAB_ICON=""
+            P9K_VCS_GIT_ICON=""
+        
+            P9K_VCS_CLEAN_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_VCS_CLEAN_FOREGROUND="010"
+        
+            P9K_VCS_MODIFIED_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_VCS_MODIFIED_FOREGROUND="011"
+        
+            P9K_VCS_UNTRACKED_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_VCS_UNTRACKED_FOREGROUND="011"
+        
+            P9K_DIR_HOME_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_DIR_HOME_FOREGROUND="158"
+            P9K_DIR_HOME_SUBFOLDER_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_DIR_HOME_SUBFOLDER_FOREGROUND="158"
+            P9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_DIR_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_DIR_DEFAULT_FOREGROUND="158"
+            P9K_DIR_ETC_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_DIR_ETC_FOREGROUND="158"
+            P9K_DIR_NOT_WRITABLE_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_DIR_NOT_WRITABLE_FOREGROUND="158"
+        
+            P9K_ROOT_INDICATOR_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_ROOT_INDICATOR_FOREGROUND="red"
+        
+            P9K_STATUS_OK_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_STATUS_OK_FOREGROUND="green"
+            P9K_STATUS_ERROR_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_STATUS_ERROR_FOREGROUND="red"
+        
+            P9K_TIME_ICON="\uF017" # 
+            P9K_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_TIME_FOREGROUND="183"
+        
+            P9K_COMMAND_EXECUTION_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
+            P9K_COMMAND_EXECUTION_TIME_PRECISION=1
+        
+            P9K_BACKGROUND_JOBS_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_BACKGROUND_JOBS_FOREGROUND="123"
+        
+            P9K_USER_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_USER_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_USER_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_USER_DEFAULT_ICON="\uF415" # 
+            P9K_USER_ROOT_ICON=$'\uFF03' # ＃
+        
+            P9K_CONTEXT_TEMPLATE="\uF109 %m"
+            P9K_CONTEXT_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_CONTEXT_DEFAULT_FOREGROUND="123"
+            P9K_CONTEXT_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_CONTEXT_SUDO_FOREGROUND="123"
+            P9K_CONTEXT_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_CONTEXT_REMOTE_FOREGROUND="123"
+            P9K_CONTEXT_REMOTE_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_CONTEXT_REMOTE_SUDO_FOREGROUND="123"
+            P9K_CONTEXT_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_CONTEXT_ROOT_FOREGROUND="123"
+        
+            P9K_HOST_LOCAL_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_HOST_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_HOST_LOCAL_ICON="\uF109 " # 
+            P9K_HOST_REMOTE_ICON="\uF489 "  # 
+        
+            P9K_SSH_ICON="\uF489 "  # 
+            P9K_SSH_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_SSH_FOREGROUND="212"
+        
+            P9K_OS_ICON_BACKGROUND="$DEFAULT_BACKGROUND"
+            P9K_OS_ICON_FOREGROUND="212"
+        fi
     fi
 fi
 
