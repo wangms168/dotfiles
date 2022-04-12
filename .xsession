@@ -16,4 +16,4 @@ dwmblocks 2>&1 >/dev/null &
 # conky 
 pkill conky 
 conky -b &
-plank 2>&1 >/dev/null &
+# plank 2>&1 >/dev/null &

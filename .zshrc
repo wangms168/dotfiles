@@ -15,7 +15,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME=robbyrussell
+# ZSH_THEME=clean
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -134,7 +134,7 @@ source ~/.zplug/init.zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
-if [ -z "ZSH_THEME" ]; then
+if [ -z "$ZSH_THEME" ]; then
     P9K=""
     if [ -z "$P9K" ]; then 
         zplug "romkatv/powerlevel10k", as:theme, depth:1
