@@ -20,10 +20,10 @@
 # [https]
 # 	proxy = http://127.0.0.1:36873/
 
-# [url "https://hub.fastgit.org/"]
-#     insteadOf = https://github.com/
-# [url "https://raw.fastgit.org/"]
-#     insteadOf = https://raw.githubusercontent.com/
+[url "https://hub.fastgit.xyz/"]
+    insteadOf = https://github.com/
+[url "https://raw.fastgit.xyz/"]
+    insteadOf = https://raw.githubusercontent.com/
 
 [http]
 	sslverify = false
